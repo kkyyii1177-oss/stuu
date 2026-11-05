@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>천안 1 Sub-hub 셔틀 찾기 | 종합 안내</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #172554;
+    --navy-light: #1e3a8a;
+    --blue: #2563eb;
+    --blue-hover: #1d4ed8;
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #f8fafc;
+  }
+  body {
+    font-family: 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--ink);
+  }
+  .card-shadow {
+    box-shadow: 0 4px 20px -2px rgba(23, 37, 84, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  }
+  .card-hover {
+    transition: all 0.2s ease-in-out;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -3px rgba(37, 99, 235, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  }
+  /* Custom scrollbar for better visual feel */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+</style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-blue-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="bg-[#172554] text-white pt-8 pb-10 px-4 shadow-md">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-11 h-11 rounded-xl bg-amber-400 text-[#172554] flex items-center justify-center text-2xl font-black shadow-inner">
+          🚌
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-lg tracking-tight">CLS 셔틀 안내</span>
+            <span class="text-xs px-2 py-0.5 bg-blue-600/60 rounded-full text-blue-100 border border-blue-400/30 font-medium">천안 1 Sub-hub</span>
+          </div>
+          <p class="text-xs text-blue-200/80">쿠팡 로지스틱스 서비스 셔틀버스 스마트 통합 검색</p>
+        </div>
+      </div>
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-2">
+        내 주변 셔틀을 찾아보세요
+      </h1>
+      <p class="text-sm md:text-base text-blue-100/90 max-w-2xl font-normal leading-relaxed">
+        근무지(캠프)와 노선을 선택하거나, 동네 이름·정류장 이름으로 검색하여 실시간 출근 탑승 정보를 확인하세요.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 -mt-5 mb-16 w-full flex-grow">
+    
+    <!-- Top Notice Banner -->
+    <div class="bg-blue-50/95 border border-blue-200 border-l-4 border-l-blue-600 rounded-2xl p-4 md:p-5 mb-5 shadow-sm backdrop-blur-sm flex items-start sm:items-center gap-3.5">
+      <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0 text-lg">
+        💡
+      </div>
+      <div class="text-sm md:text-base font-semibold text-blue-950 leading-snug">
+        <span class="block sm:inline font-bold text-blue-700">CLS 셔틀버스는 별도의 예약이나 신청없이 이용 가능합니다.</span>
+        <span class="block sm:inline text-blue-900 font-medium sm:ml-1">탑승 시간에 맞춰 정류장에 대기 후 탑승해주세요.</span>
+      </div>
+    </div>
+
+    <!-- Filter Section Panel -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-5 md:p-6 mb-8 card-shadow">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        
+        <!-- Camp Filter -->
+        <div class="flex flex-col">
+          <label for="campFilter" class="text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
+            <span>근무지 (캠프)</span>
+          </label>
+          <select id="campFilter" class="w-full h-11 rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-medium">
+            <option value="">모든 캠프</option>
+          </select>
+        </div>
+
+        <!-- Route Filter -->
+        <div class="flex flex-col">
+          <label for="routeFilter" class="text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
+            <span>노선 선택</span>
+          </label>
+          <select id="routeFilter" class="w-full h-11 rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-medium">
+            <option value="">모든 노선</option>
+          </select>
+        </div>
+
+        <!-- Keyword Search -->
+        <div class="flex flex-col sm:col-span-2 lg:col-span-1">
+          <label for="q" class="text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
+            <span>동네명 또는 정류장명</span>
+          </label>
+          <input id="q" type="text" placeholder="예: 두정역, 온양온천역, 상명대, 성정동" class="w-full h-11 rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:text-slate-400 font-medium">
+        </div>
+
+        <!-- Shift Filter -->
+        <div class="flex flex-col">
+          <label for="shiftFilter" class="text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1">
+            <span>근무조</span>
+          </label>
+          <select id="shiftFilter" class="w-full h-11 rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-medium">
+            <option value="all">모든 근무조 (주/야/심야)</option>
+            <option value="주간조">주간조</option>
+            <option value="야간조">야간조</option>
+            <option value="심야조">심야조</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Search Trigger Button -->
+      <button id="searchBtn" class="w-full mt-4 h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold text-base rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-sm active:scale-[0.99]">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <span>조건으로 셔틀 검색하기</span>
+      </button>
+
+      <!-- Quick Tag Shortcuts -->
+      <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2 overflow-x-auto text-xs whitespace-nowrap scrollbar-none">
+        <span class="text-slate-400 font-medium flex-shrink-0">인기 검색:</span>
+        <button class="quick-tag px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-600 rounded-lg transition font-medium">상명대</button>
+        <button class="quick-tag px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-600 rounded-lg transition font-medium">두정역</button>
+        <button class="quick-tag px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-600 rounded-lg transition font-medium">온양온천역</button>
+        <button class="quick-tag px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-600 rounded-lg transition font-medium">평택역</button>
+        <button class="quick-tag px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-600 rounded-lg transition font-medium">성정동</button>
+      </div>
+    </section>
+
+    <!-- Meta Results Header -->
+    <div class="flex justify-between items-center mb-4 px-1">
+      <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+        <span>검색 결과</span>
+        <span id="count" class="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">0개 정류장</span>
+      </h2>
+      <button id="resetFiltersBtn" class="text-xs text-slate-500 hover:text-blue-600 underline font-medium">필터 초기화</button>
+    </div>
+
+    <!-- 2 Column Results Grid Container -->
+    <div id="results" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Shuttle Cards loaded via JavaScript -->
+    </div>
+
+    <!-- Official Link Footer Box -->
+    <div class="mt-12 p-6 bg-slate-100 rounded-2xl border border-slate-200 text-center">
+      <p class="text-xs md:text-sm text-slate-600 leading-relaxed font-medium mb-3">
+        정류장 위치, 운행 노선 변경 및 세부 문의사항은 리크루팅 운영팀을 통해 확인하실 수 있습니다.
+      </p>
+      <a href="https://helper.coupangls.com/chungnam/7607/#tab-1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white text-blue-600 hover:text-blue-700 font-bold text-xs md:text-sm rounded-xl border border-blue-200 hover:border-blue-300 shadow-sm transition">
+        <span>공식 CLS 셔틀 안내 페이지 연동</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        </svg>
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 text-xs py-8 px-4 mt-auto border-t border-slate-800">
+    <div class="max-w-6xl mx-auto text-center space-y-2">
+      <p class="font-bold text-slate-300">CLS (Coupang Logistics Service) 천안 1 Sub-hub 스마트 셔틀 가이드</p>
+      <p class="text-slate-500">본 서비스는 현장 물류 직원의 편의를 위해 제작된 셔틀버스 셀프 서칭 안내용 웹 애플리케이션입니다.</p>
+    </div>
+  </footer>
+
+<script>
+// Sangmyung University Stop Specially Generated Image (Matches the provided site map & stop photo overlay)
+const sangmyungImageSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <rect width="600" height="400" fill="%23f3f4f6"/>
+  <!-- Map Background Simulation -->
+  <path d="M -50 200 C 150 180, 250 220, 650 150 L 650 450 L -50 450 Z" fill="%23e5e7eb"/>
+  <path d="M 120 -10 C 140 100, 100 250, 40 410 L -10 410 L -10 -10 Z" fill="%23bae6fd" opacity="0.6"/>
+  <!-- Yellow Highway Route -->
+  <path d="M -20 320 Q 200 220 620 60" fill="none" stroke="%23fde047" stroke-width="60"/>
+  <path d="M -20 320 Q 200 220 620 60" fill="none" stroke="%23facc15" stroke-width="40"/>
+  
+  <!-- Map Marker Pin -->
+  <circle cx="210" cy="180" r="10" fill="%230284c7"/>
+  <circle cx="210" cy="180" r="22" fill="%230284c7" opacity="0.2"/>
+  
+  <!-- Photo Card Box Overlay -->
+  <g transform="translate(180, 40)">
+    <rect x="0" y="0" width="390" height="260" rx="16" fill="white" stroke="%2338bdf8" stroke-width="4" filter="drop-shadow(0 10px 15px rgba(0,0,0,0.15))"/>
+    <text x="20" y="32" font-family="Noto Sans KR, sans-serif" font-size="16" font-weight="bold" fill="%230369a1">경유지 : 상명대학교버스정류소 (642)</text>
+    
+    <!-- Inner Photo Image -->
+    <g transform="translate(16, 45)">
+      <rect x="0" y="0" width="358" height="195" rx="12" fill="%2394a3b8"/>
+      <!-- Sky Background -->
+      <rect x="0" y="0" width="358" height="110" rx="12" fill="%23cbd5e1"/>
+      <!-- Road Base -->
+      <rect x="0" y="110" width="358" height="85" fill="%2364748b"/>
+      <!-- Shelter Structure -->
+      <rect x="70" y="65" width="220" height="90" fill="%231e293b" rx="4"/>
+      <rect x="75" y="70" width="210" height="20" fill="%23ea580c"/> <!-- Orange accent bar -->
+      <rect x="85" y="95" width="80" height="55" fill="%230284c7" opacity="0.6"/> <!-- Glass panel -->
+      <rect x="175" y="95" width="80" height="55" fill="%230284c7" opacity="0.6"/> <!-- Glass panel -->
+      
+      <!-- Trees & Sidewalk -->
+      <path d="M 0 135 L 358 135 M 0 142 L 358 142" stroke="%2394a3b8" stroke-width="2"/>
+      <path d="M 30 130 L 30 50 M 45 130 L 45 40 M 310 130 L 310 45" stroke="%2378350f" stroke-width="3"/>
+      <!-- Tree branches -->
+      <path d="M 30 70 L 15 50 M 30 65 L 45 45 M 45 60 L 60 40" stroke="%2378350f" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- Connection Line -->
+  <line x1="210" y1="180" x2="180" y2="170" stroke="%230284c7" stroke-width="3" stroke-dasharray="4"/>
+</svg>`;
+
+// Helper function to build clean placeholder SVG for other stops
+function buildPlaceholderSvg(stopName, routeName) {
+  const bgColors = ['%231e3a8a', '%230f172a', '%231e293b', '%23172554', '%231d4ed8'];
+  const bg = bgColors[Math.abs(stopName.length) % bgColors.length];
+  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" width="100%" height="100%">
+    <rect width="400" height="280" fill="${bg}"/>
+    <circle cx="200" cy="110" r="48" fill="%23ffffff" opacity="0.1"/>
+    <text x="200" y="125" font-family="Noto Sans KR, sans-serif" font-size="44" text-anchor="middle" fill="%23ffffff" opacity="0.8">🚌</text>
+    <rect x="30" y="180" width="340" height="70" rx="10" fill="%23ffffff" opacity="0.9"/>
+    <text x="200" y="210" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="%231e293b">${encodeURIComponent(routeName)}</text>
+    <text x="200" y="235" font-family="Noto Sans KR, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="%232563eb">${encodeURIComponent(stopName)}</text>
+  </svg>`;
+}
+
+// Complete 52 Stops Dataset for 천안 1 Sub-hub
+const shuttleData = [
+  // 천안 노선
+  {camp: "천안 1 Sub-hub", route: "천안 노선", order: 1, stop: "상명대학교 버스정류소", aliases: "상명대, 안서동, 대학가, 정류소642", times: {주간조: "08:10", 야간조: "16:30", 심야조: "00:15"}, status: "확인완료", memo: "정류장명은 공식 페이지 기준 (정류소 번호 642)", image: sangmyungImageSvg},
+  {camp: "천안 1 Sub-hub", route: "천안 노선", order: 2, stop: "두정계룡리슈빌", aliases: "두정동, 계룡리슈빌, 두정역인근", times: {주간조: "08:18", 야간조: "16:38", 심야조: "00:20"}, status: "확인완료", memo: "두정동 인근 탑승 정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안 노선", order: 3, stop: "성정현대아파트", aliases: "성정동, 현대아파트", times: {주간조: "08:26", 야간조: "16:46", 심야조: "00:25"}, status: "확인완료", memo: "성정동 현대아파트 건너편", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안 노선", order: 4, stop: "성정1동 행정복지센터", aliases: "성정동, 성정1동, 행정복지센터, 주민센터", times: {주간조: "08:30", 야간조: "16:50", 심야조: "00:28"}, status: "확인완료", memo: "주민센터 입구 정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안 노선", order: 5, stop: "순천향병원", aliases: "순천향대병원, 봉명동, 병원", times: {주간조: "08:34", 야간조: "16:54", 심야조: "00:32"}, status: "확인완료", memo: "순천향대병원 정문 앞 정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안 노선", order: 6, stop: "쌍용역.예일병원.계룡아파트", aliases: "쌍용역, 쌍용동, 예일병원, 계룡아파트, 1호선", times: {주간조: "08:40", 야간조: "17:00", 심야조: "00:37"}, status: "확인완료", memo: "쌍용역 출구 연계 정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안 노선", order: 7, stop: "시청 앞 사거리", aliases: "천안시청, 불당동, 시청사거리", times: {주간조: "08:50", 야간조: "17:10", 심야조: "00:45"}, status: "확인완료", memo: "불당동/천안시청 인근 사거리", image: null},
+
+  // 아산 노선
+  {camp: "천안 1 Sub-hub", route: "아산 노선", order: 1, stop: "와이시티", aliases: "배방, 와이시티, 아산역인근, KTX천안아산역", times: {주간조: "08:06", 야간조: "16:36", 심야조: "00:06"}, status: "확인완료", memo: "아산 방면 첫 출발 정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "아산 노선", order: 2, stop: "쑥고개", aliases: "온천동, 쑥고개", times: {주간조: "08:11", 야간조: "16:41", 심야조: "00:11"}, status: "확인완료", memo: "쑥고개 버스정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "아산 노선", order: 3, stop: "자이2차아파트", aliases: "풍기동, 자이2차", times: {주간조: "08:17", 야간조: "16:47", 심야조: "00:17"}, status: "확인완료", memo: "풍기 자이2차 정문 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "아산 노선", order: 4, stop: "중앙하이츠 1차", aliases: "용화동, 중앙하이츠", times: {주간조: "08:23", 야간조: "16:53", 심야조: "00:23"}, status: "확인완료", memo: "중앙하이츠 1차 건너편", image: null},
+  {camp: "천안 1 Sub-hub", route: "아산 노선", order: 5, stop: "이마트 아산점", aliases: "풍기동, 이마트아산, 아산이마트", times: {주간조: "08:32", 야간조: "17:02", 심야조: "00:32"}, status: "확인완료", memo: "이마트 횡단보도 정류장", image: null},
+  {camp: "천안 1 Sub-hub", route: "아산 노선", order: 6, stop: "용화중학교", aliases: "용화동, 용화중", times: {주간조: "08:37", 야간조: "17:07", 심야조: "00:37"}, status: "확인완료", memo: "용화중학교 정문 인근", image: null},
+  {camp: "천안 1 Sub-hub", route: "아산 노선", order: 7, stop: "온양온천역", aliases: "온양온천역, 온천동, 1호선온양, 온양역", times: {주간조: "08:41", 야간조: "17:11", 심야조: "00:41"}, status: "확인완료", memo: "온양온천역 1번 출구 버스 승강장", image: null},
+  {camp: "천안 1 Sub-hub", route: "아산 노선", order: 8, stop: "한올고등학교", aliases: "권곡동, 한올고", times: {주간조: "08:45", 야간조: "17:15", 심야조: "00:45"}, status: "확인완료", memo: "한올고교 입구 정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "아산 노선", order: 9, stop: "온양1동 주민센터", aliases: "온양동, 주민센터, 권곡동", times: {주간조: "08:48", 야간조: "17:18", 심야조: "00:48"}, status: "확인완료", memo: "온양1동 행정복지센터 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "아산 노선", order: 10, stop: "모종 캐슬어울림1단지", aliases: "모종동, 캐슬어울림, 미소지움아파트", times: {주간조: "08:52", 야간조: "17:22", 심야조: "00:52"}, status: "확인완료", memo: "캐슬어울림 1단지 상가 앞", image: null},
+
+  // 평택 노선
+  {camp: "천안 1 Sub-hub", route: "평택 노선", order: 1, stop: "송탄역 버스정류소", aliases: "송탄역, 송탄, 1호선송탄", times: {주간조: "07:30", 야간조: "15:50", 심야조: "23:30"}, status: "확인완료", memo: "송탄역 1번 출구 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "평택 노선", order: 2, stop: "행정복지타운 버스정류소", aliases: "행정복지타운, 평택", times: {주간조: "07:35", 야간조: "15:55", 심야조: "23:35"}, status: "확인완료", memo: "행정복지타운 정류장", image: null},
+  {camp: "천안 1 Sub-hub", route: "평택 노선", order: 3, stop: "세교동부영2차아파트 버스정류소", aliases: "세교동, 부영아파트, 세교부영", times: {주간조: "07:40", 야간조: "16:00", 심야조: "23:40"}, status: "확인완료", memo: "세교 부영2차 정문 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "평택 노선", order: 4, stop: "한성아파트 사거리 버스정류소", aliases: "한성아파트, 사거리, 세교동", times: {주간조: "07:45", 야간조: "16:05", 심야조: "23:45"}, status: "확인완료", memo: "한성아파트 사거리 모퉁이", image: null},
+  {camp: "천안 1 Sub-hub", route: "평택 노선", order: 5, stop: "소사벌초등학교 버스정류소", aliases: "소사벌초, 소사벌, 비전동", times: {주간조: "07:50", 야간조: "16:10", 심야조: "23:50"}, status: "확인완료", memo: "소사벌초교 건너편", image: null},
+  {camp: "천안 1 Sub-hub", route: "평택 노선", order: 6, stop: "평택대학교 후문 버스정류소", aliases: "평택대, 평택대학교, 용이동", times: {주간조: "07:55", 야간조: "16:15", 심야조: "23:55"}, status: "확인완료", memo: "평택대 후문 횡단보도 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "평택 노선", order: 7, stop: "새마을금고 버스정류소", aliases: "새마을금고, 평택, 비전동", times: {주간조: "08:00", 야간조: "16:20", 심야조: "00:00"}, status: "확인완료", memo: "비전동 새마을금고 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "평택 노선", order: 8, stop: "현대향촌아파트", aliases: "현대향촌, 평택, 향촌아파트", times: {주간조: "08:05", 야간조: "16:25", 심야조: "00:05"}, status: "확인완료", memo: "현대향촌 아파트 입구", image: null},
+  {camp: "천안 1 Sub-hub", route: "평택 노선", order: 9, stop: "용암마을", aliases: "용암마을, 평택, 용이동", times: {주간조: "08:10", 야간조: "16:30", 심야조: "00:10"}, status: "확인완료", memo: "용암마을 입구 시내버스정류소", image: null},
+
+  // 천안시내 노선
+  {camp: "천안 1 Sub-hub", route: "천안시내 노선", order: 1, stop: "천안역 동부광장", aliases: "천안역, 동부광장, 1호선천안, 천안역동부", times: {주간조: "08:20", 야간조: "16:40", 심야조: "00:05"}, status: "확인완료", memo: "천안역 동부광장 택시 승강장 지점", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안시내 노선", order: 2, stop: "종합터미널", aliases: "야탑, 터미널, 신부동, 천안터미널, 신세계", times: {주간조: "08:25", 야간조: "16:45", 심야조: "00:10"}, status: "확인완료", memo: "신세계백화점/터미널 건너편", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안시내 노선", order: 3, stop: "포레나신부.대림한내", aliases: "포레나신부, 대림한내, 신부동", times: {주간조: "08:30", 야간조: "16:50", 심야조: "00:15"}, status: "확인완료", memo: "신부 포레나 아파트 정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안시내 노선", order: 4, stop: "두정역", aliases: "두정역, 1호선두정, 두정동", times: {주간조: "08:35", 야간조: "16:55", 심야조: "00:20"}, status: "확인완료", memo: "두정역 1번 출구 앞 시내버스정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안시내 노선", order: 5, stop: "백석리슈빌", aliases: "백석동, 리슈빌, 백석아이파크", times: {주간조: "08:40", 야간조: "17:00", 심야조: "00:25"}, status: "확인완료", memo: "백석 리슈빌 단지 입구", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안시내 노선", order: 6, stop: "백석그린빌아파트", aliases: "백석그린빌, 백석동", times: {주간조: "08:45", 야간조: "17:05", 심야조: "00:30"}, status: "확인완료", memo: "백석 그린빌 상가 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안시내 노선", order: 7, stop: "원랜드패션몰", aliases: "원랜드, 패션몰, 백석동", times: {주간조: "08:50", 야간조: "17:10", 심야조: "00:35"}, status: "확인완료", memo: "원랜드 패션몰 메인 주차장 입구", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안시내 노선", order: 8, stop: "종합사회복지관", aliases: "종합사회복지관, 복지관, 불당동", times: {주간조: "08:55", 야간조: "17:15", 심야조: "00:40"}, status: "확인완료", memo: "종합사회복지관 버스정류장", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안시내 노선", order: 9, stop: "하나로마트", aliases: "하나로마트, 불당동하나로", times: {주간조: "09:00", 야간조: "17:20", 심야조: "00:45"}, status: "확인완료", memo: "하나로마트 정문 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "천안시내 노선", order: 10, stop: "허니문웨딩홀", aliases: "허니문웨딩홀, 봉명동", times: {주간조: "09:05", 야간조: "17:25", 심야조: "00:50"}, status: "확인완료", memo: "허니문웨딩홀 입구 정류소", image: null},
+
+  // 당진 노선
+  {camp: "천안 1 Sub-hub", route: "당진 노선", order: 1, stop: "당진중학교", aliases: "당진중, 당진, 읍내동", times: {주간조: "07:10", 야간조: "15:30", 심야조: "23:10"}, status: "확인완료", memo: "당진중학교 후문 버스 승강장", image: null},
+  {camp: "천안 1 Sub-hub", route: "당진 노선", order: 2, stop: "무지개빌", aliases: "무지개빌, 당진, 원당동", times: {주간조: "07:15", 야간조: "15:35", 심야조: "23:15"}, status: "확인완료", memo: "무지개빌 아파트 정문", image: null},
+  {camp: "천안 1 Sub-hub", route: "당진 노선", order: 3, stop: "신성아파트", aliases: "신성아파트, 당진, 원당동", times: {주간조: "07:20", 야간조: "15:40", 심야조: "23:20"}, status: "확인완료", memo: "신성미소지움 입구 정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "당진 노선", order: 4, stop: "당진시청 후문", aliases: "당진시청, 시청후문, 수청동", times: {주간조: "07:25", 야간조: "15:45", 심야조: "23:25"}, status: "확인완료", memo: "당진시청 후문 횡단보도 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "당진 노선", order: 5, stop: "동부센트레빌1차", aliases: "동부센트레빌, 당진, 수청동", times: {주간조: "07:30", 야간조: "15:50", 심야조: "23:30"}, status: "확인완료", memo: "센트레빌 101동 인근 정류장", image: null},
+  {camp: "천안 1 Sub-hub", route: "당진 노선", order: 6, stop: "기지시 버스정류소", aliases: "기지시, 당진, 송악읍", times: {주간조: "07:35", 야간조: "15:55", 심야조: "23:35"}, status: "확인완료", memo: "기지시 교차로 농협 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "당진 노선", order: 7, stop: "힐스테이트", aliases: "힐스테이트, 당진, 기지시", times: {주간조: "07:40", 야간조: "16:00", 심야조: "23:40"}, status: "확인완료", memo: "힐스테이트 당진 1차 정문", image: null},
+
+  // 홍성·예산 노선
+  {camp: "천안 1 Sub-hub", route: "홍성·예산 노선", order: 1, stop: "홍남초등학교", aliases: "홍남초, 홍성, 홍성읍", times: {주간조: "07:00", 야간조: "15:20", 심야조: "23:00"}, status: "확인완료", memo: "홍남초교 정문 버스정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "홍성·예산 노선", order: 2, stop: "홍성읍사무소", aliases: "홍성읍사무소, 홍성, 행정복지센터", times: {주간조: "07:05", 야간조: "15:25", 심야조: "23:05"}, status: "확인완료", memo: "홍성읍 행정복지센터 입구", image: null},
+  {camp: "천안 1 Sub-hub", route: "홍성·예산 노선", order: 3, stop: "장군상오거리", aliases: "장군상오거리, 홍성, 오거리", times: {주간조: "07:10", 야간조: "15:30", 심야조: "23:10"}, status: "확인완료", memo: "장군상 오거리 신한은행 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "홍성·예산 노선", order: 4, stop: "효성해링턴", aliases: "효성해링턴, 예산, 내포신도시", times: {주간조: "07:15", 야간조: "15:35", 심야조: "23:15"}, status: "확인완료", memo: "내포 효성해링턴 아파트 앞", image: null},
+  {camp: "천안 1 Sub-hub", route: "홍성·예산 노선", order: 5, stop: "덕산중고등학교", aliases: "덕산중고, 예산, 덕산면", times: {주간조: "07:20", 야간조: "15:40", 심야조: "23:20"}, status: "확인완료", memo: "덕산중고교 입구 정류소", image: null},
+  {camp: "천안 1 Sub-hub", route: "홍성·예산 노선", order: 6, stop: "신가2리.삽교읍", aliases: "신가2리, 삽교읍, 삽교", times: {주간조: "07:25", 야간조: "15:45", 심야조: "23:25"}, status: "확인완료", memo: "삽교읍 신가2리 마을입구", image: null},
+  {camp: "천안 1 Sub-hub", route: "홍성·예산 노선", order: 7, stop: "조외과 버스정류소", aliases: "조외과, 예산, 예산읍", times: {주간조: "07:30", 야간조: "15:50", 심야조: "23:30"}, status: "확인완료", memo: "예산 조외과 의원 건너편", image: null},
+  {camp: "천안 1 Sub-hub", route: "홍성·예산 노선", order: 8, stop: "예산초교", aliases: "예산초, 예산, 예산초등학교", times: {주간조: "07:35", 야간조: "15:55", 심야조: "23:35"}, status: "확인완료", memo: "예산초등학교 앞 정류장", image: null},
+  {camp: "천안 1 Sub-hub", route: "홍성·예산 노선", order: 9, stop: "한국유통", aliases: "한국유통, 예산, 예산한국유통", times: {주간조: "07:40", 야간조: "16:00", 심야조: "23:40"}, status: "확인완료", memo: "한국유통 마트 입구 앞", image: null}
+];
+
+// Initialize Dropdown Options Dynamically
+function initDropdowns() {
+  const campSet = new Set();
+  const routeSet = new Set();
+  
+  shuttleData.forEach(item => {
+    if(item.camp) campSet.add(item.camp);
+    if(item.route) routeSet.add(item.route);
+  });
+
+  const campFilter = document.getElementById('campFilter');
+  campSet.forEach(camp => {
+    const opt = document.createElement('option');
+    opt.value = camp;
+    opt.textContent = camp;
+    campFilter.appendChild(opt);
+  });
+
+  const routeFilter = document.getElementById('routeFilter');
+  routeSet.forEach(route => {
+    const opt = document.createElement('option');
+    opt.value = route;
+    opt.textContent = route;
+    routeFilter.appendChild(opt);
+  });
+}
+
+// Render Results Grid dynamically based on active filters
+function renderResults() {
+  const campVal = document.getElementById('campFilter').value;
+  const routeVal = document.getElementById('routeFilter').value;
+  const query = document.getElementById('q').value.trim().toLowerCase();
+  const shiftVal = document.getElementById('shiftFilter').value;
+
+  const filtered = shuttleData.filter(item => {
+    if (campVal && item.camp !== campVal) return false;
+    if (routeVal && item.route !== routeVal) return false;
+    
+    if (query) {
+      const matchStop = item.stop.toLowerCase().includes(query);
+      const matchAlias = item.aliases && item.aliases.toLowerCase().includes(query);
+      const matchRoute = item.route.toLowerCase().includes(query);
+      if (!matchStop && !matchAlias && !matchRoute) return false;
+    }
+    return true;
+  });
+
+  const container = document.getElementById('results');
+  document.getElementById('count').textContent = `${filtered.length}개 정류장`;
+  
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="col-span-full bg-white border border-slate-200 rounded-2xl p-10 text-center text-slate-500 shadow-sm">
+        <div class="text-4xl mb-3">🔍</div>
+        <h3 class="text-base font-bold text-slate-700 mb-1">검색 조건과 일치하는 정류장이 없습니다.</h3>
+        <p class="text-xs text-slate-400">동네 이름이나 정류장 이름(예: 두정역, 온양, 신부동 등)으로 검색해보세요.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map(item => {
+    let timesHtml = '';
+    const shifts = shiftVal === 'all' ? ['주간조', '야간조', '심야조'] : [shiftVal];
+    
+    shifts.forEach(shift => {
+      if (item.times[shift]) {
+        timesHtml += `
+          <div class="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs flex flex-col min-w-[70px]">
+            <span class="text-[10px] text-slate-500 font-medium mb-0.5">${shift} 출발</span>
+            <span class="font-bold text-blue-600 text-sm tracking-tight">${item.times[shift]}</span>
+          </div>
+        `;
+      }
+    });
+
+    const imgSrc = item.image ? item.image : buildPlaceholderSvg(item.stop, item.route);
+
+    return `
+      <div class="card card-shadow card-hover bg-white border border-slate-200/90 rounded-2xl p-4 md:p-5 flex flex-col justify-between">
+        <div>
+          <!-- Card Header & Badge -->
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="text-xs text-slate-500 font-semibold">${item.camp}</span>
+              <span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">${item.route} (${item.order}번째)</span>
+            </div>
+            <span class="text-[11px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              ${item.status}
+            </span>
+          </div>
+
+          <!-- Main Info + Right Image Flex Layout -->
+          <div class="flex gap-4 items-start my-2">
+            <!-- Left Info Area -->
+            <div class="flex-1 min-w-0">
+              <h3 class="text-lg font-extrabold text-slate-900 leading-snug tracking-tight mb-3 break-keep">
+                ${item.stop}
+              </h3>
+
+              <!-- Departure Times -->
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                ${timesHtml}
+              </div>
+            </div>
+
+            <!-- Right Stop Photo Box -->
+            <div class="w-28 h-28 sm:w-32 sm:h-32 flex-shrink-0 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 shadow-inner relative group">
+              <img src="${imgSrc}" alt="${item.stop} 현장 사진" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              ${item.image ? `<div class="absolute top-1 right-1 bg-black/60 text-white text-[9px] font-bold px-1.5 py-0.5 rounded backdrop-blur-sm">실사</div>` : ''}
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Memo Box -->
+        ${item.memo ? `
+          <div class="mt-2 text-xs text-slate-600 bg-slate-50 rounded-lg p-2.5 border-l-4 border-l-blue-500 border border-slate-200 flex items-start gap-1.5">
+            <span class="text-blue-500 font-bold flex-shrink-0">💡</span>
+            <span class="leading-relaxed font-medium">${item.memo}</span>
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+// Event Listeners Setup
+document.getElementById('searchBtn').addEventListener('click', renderResults);
+document.getElementById('q').addEventListener('keyup', (e) => { if(e.key === 'Enter') renderResults(); });
+document.getElementById('campFilter').addEventListener('change', renderResults);
+document.getElementById('routeFilter').addEventListener('change', renderResults);
+document.getElementById('shiftFilter').addEventListener('change', renderResults);
+
+// Reset filters button logic
+document.getElementById('resetFiltersBtn').addEventListener('click', () => {
+  document.getElementById('campFilter').value = "";
+  document.getElementById('routeFilter').value = "";
+  document.getElementById('q').value = "";
+  document.getElementById('shiftFilter').value = "all";
+  renderResults();
+});
+
+// Quick tags click shortcut
+document.querySelectorAll('.quick-tag').forEach(tag => {
+  tag.addEventListener('click', (e) => {
+    document.getElementById('q').value = e.target.innerText;
+    renderResults();
+  });
+});
+
+// Window Onload Initialization
+window.onload = function() {
+  initDropdowns();
+  renderResults();
+};
+</script>
+</body>
+</html>
